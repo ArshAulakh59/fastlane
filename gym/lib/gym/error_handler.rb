@@ -226,11 +226,11 @@ module Gym
       end
 
       def print_environment_information
-        if Gym.config[:export_method].to_s == "development"
+        if Gym.config[:export_method].to_s == "debugging"
           UI.message("")
-          UI.error("Your `export_method` in gym is defined as `development`")
+          UI.error("Your `export_method` in gym is defined as `debugging`")
           UI.error("which might cause problems when signing your application")
-          UI.error("Are you sure want to build and export for development?")
+          UI.error("Are you sure want to build and export for debugging?")
           UI.error("Please make sure to define the correct export methods when calling")
           UI.error("gym in your Fastfile or from the command line")
           UI.message("")
@@ -249,17 +249,17 @@ module Gym
           # the provisioning profile might be called anything below
           # There is no 100% good way to detect the profile type based on the name
           available_export_types = {
-            "app-store" => "app-store",
-            "app store" => "app-store",
-            "appstore" => "app-store",
+            "app-store" => "app-store-connect",
+            "app store" => "app-store-connect",
+            "appstore" => "app-store-connect",
             "enterprise" => "enterprise",
             "in-house" => "enterprise",
             "in house" => "enterprise",
             "inhouse" => "enterprise",
-            "ad-hoc" => "ad-hoc",
-            "adhoc" => "ad-hoc",
-            "ad hoc" => "ad-hoc",
-            "development" => "development"
+            "ad-hoc" => "release-testing",
+            "adhoc" => "release-testing",
+            "ad hoc" => "release-testing",
+            "development" => "debugging"
           }
 
           selected_provisioning_profiles.each do |current_bundle_identifier, current_profile_name|

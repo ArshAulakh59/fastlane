@@ -59,7 +59,7 @@ Code signing is required for product type 'Application' in SDK 'iOS 11.0'
       mock_gym_path(@output)
       expect(UI).to receive(:build_failure!).with("Error building the application - see the log above", error_info: @output)
 
-      Gym.config[:export_method] = 'app-store'
+      Gym.config[:export_method] = 'app-store-connect'
       Gym.config[:export_options][:provisioningProfiles] = {
         'com.sample.app' => 'In House Ad Hoc'
       }
@@ -76,7 +76,7 @@ Code signing is required for product type 'Application' in SDK 'iOS 11.0'
 
       Gym.config[:export_method] = 'enterprise'
       Gym.config[:export_options][:provisioningProfiles] = {
-        'com.sample.app' => 'In House Ad Hoc' # `enterprise` take precedence over `ad-hoc`
+        'com.sample.app' => 'In House Ad Hoc' # `enterprise` take precedence over `release-testing`
       }
 
       expect(UI).to receive(:error).with(/There seems to be a mismatch between/).never
